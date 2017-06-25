@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UsersService {
 
- urlAddress = "localhost:8080/story/";
+ urlAddress = "http://localhost:8080/story/";
 	constructor(private http: Http){}
 
 
