@@ -1,3 +1,6 @@
-<p>
-  users works!
-</p>
+<div class="container">
+	<div  *ngFor = "let arrayEl of arrayOfUsers">
+	  {{ arrayEl.title}} <br>
+	  {{ arrayEl.description}}
+	</div>	
+</div>
