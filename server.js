@@ -27,7 +27,11 @@ app.use(function(req, res, next) {
 
 app.get('/story/:id', (req, res) => {
   const id = req.params.id
-  if(sample_data[id]) {
+
+  if(id == "all") {
+    res.send(sample_data)
+  }
+  else if(sample_data[id]) {
     res.send(sample_data[id])
   }
   else {
