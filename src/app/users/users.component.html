@@ -1,6 +1,8 @@
 <div class="container">
-	<div  *ngFor = "let arrayEl of arrayOfUsers">
-	  {{ arrayEl.title}} <br>
-	  {{ arrayEl.description}}
-	</div>	
+	<div class="user-list">
+		<div class="user" *ngFor = "let user of users">
+		  <h1>{{ user.name }}</h1>
+		  <h3>"{{ user.quote }}"</h3>
+		</div>
+	</div>
 </div>

@@ -1,0 +1,31 @@
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: sans-serif;
+}
+
+.user {
+  padding: 10px 20px;
+  background: #333;
+  border-radius: 5px;
+  color: #FFF;
+  margin: 5px;
+  transition-duration: 0.3s;
+}
+
+.user:hover {
+  cursor: pointer;
+  background: crimson;
+}
+
+.user > * {
+  margin: 0;
+}
+
+.user h1 {
+  font-weight: 400;
+}
+
+.user h3 {
+  font-weight: 100;
+}
