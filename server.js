@@ -4,18 +4,18 @@ const app = express()
 const sample_data = [
   {
     id: 0,
-    title: "My name jeff",
-    description: "My nameeeeee a jeff"
+    name: "Bruce Wayne",
+    quote: "I am NOT batman."
   },
   {
     id: 1,
-    title: "I am batman",
-    description: "I am batman. I am batman. I am batman."
+    name: "The Flash",
+    quote: "Fuck your timeline bullshit."
   },
   {
     id: 2,
-    title: "Howdy",
-    description: "Foo bar baz."
+    name: "Zoom",
+    quote: "Beep beep, coming for your girl."
   }
 ]
 
@@ -27,7 +27,11 @@ app.use(function(req, res, next) {
 
 app.get('/story/:id', (req, res) => {
   const id = req.params.id
-  if(sample_data[id]) {
+
+  if(id == "all") {
+    res.send(sample_data)
+  }
+  else if(sample_data[id]) {
     res.send(sample_data[id])
   }
   else {
