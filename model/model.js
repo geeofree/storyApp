@@ -5,8 +5,6 @@ class DBModel {
   constructor(settings) {
     const { host, user, password, database } = settings
     this.connection = mysql.createConnection({ host, user, password, database })
-    this.createTable = this.createTable.bind(this)
-    this.createTables = this.createTables.bind(this)
   }
 
   tableSerialize({ table_name, primary_key, foreign_key, columns }) {
@@ -28,18 +26,27 @@ class DBModel {
       return `${name} ${type}${size}`
     }).join(', ')
 
-
     return `CREATE TABLE ${table_name} (${id}${foreignId}${tableColumns});`
   }
 
   createTable(data) {
-    const { connection, wrapConnection, tableSerialize } = this
+    const { connection, tableSerialize } = this
     connection.query(tableSerialize(data))
   }
 
   createTables(data_array) {
     const { createTable } = this
     return data_array.map(data => createTable(data))
+  }
+
+  select(table_name, condition, callback) {
+    const { connection } = this
+    connection.query(`SELECT * FROM \`${table_name}\` WHERE ${condition}`, (err, results) => callback(results, err))
+  }
+
+  selectAll(table_name, callback) {
+    const { connection } = this
+    connection.query(`SELECT * FROM \`${table_name}\``, (err, results) => callback(results, err))
   }
 }
 
