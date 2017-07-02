@@ -1,18 +1,16 @@
 const { DBConnect} = require('./model/model')
-const { initAppTables } = require('./model/table')
+const { initAppTables } = require('./model/tables')
 
 const express = require('express')
 const app = express()
 
-// MAKE AN INSTANCE OF A DATABASE CONNECTION
 const model = new DBConnect({
+  database: 'story_time',
+  password: '$gaia52396',
   host: 'localhost',
   user: 'root',
-  password: '$gaia52396',
-  database: 'story_time'
 })
 
-// INITIALIZE THE APP'S TABLES
 initAppTables(model)
 
 // ADD CORS TO HEADERS
@@ -22,4 +20,4 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.listen(8080, ()=> console.log("Listening to port 8080"))
+app.listen(8080, () => console.log("Listening to port 8080"))
