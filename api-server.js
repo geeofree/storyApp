@@ -1,4 +1,6 @@
-const { DBConnect, initAppTables } = require('./model')
+const { DBConnect} = require('./model/model')
+const { initAppTables } = require('./model/table')
+
 const express = require('express')
 const app = express()
 
