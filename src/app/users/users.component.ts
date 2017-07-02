@@ -16,7 +16,7 @@ export class UsersComponent {
 
   ngOnInit() {
     const { response, usersService } = this
-    this.usersService.getAllUsers().subscribe(res => response = res)
+    usersService.getAllUsers().subscribe(res => response = res)
   }
 
   ngDoCheck(){
