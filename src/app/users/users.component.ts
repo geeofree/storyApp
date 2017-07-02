@@ -8,7 +8,7 @@ import { UsersService } from './users.service'
   styleUrls: ['./users.component.css'],
   providers:[UsersService]
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   private response = [];
   private users = [];
 
