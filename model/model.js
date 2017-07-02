@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 
 
-class DBConnect {
+class DBModel {
   constructor(settings) {
     const { host, user, password, database } = settings
     this.connection = mysql.createConnection({ host, user, password, database })
@@ -44,4 +44,4 @@ class DBConnect {
 }
 
 
-module.exports = { DBConnect }
+module.exports = { DBModel }
