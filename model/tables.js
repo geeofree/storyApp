@@ -95,7 +95,10 @@ const comments = {
 
 
 const initAppTables = (model) => {
-  model.createTables([user, story, comments])
+  model.connection.connect()
+  if(process.argv[2] == "--init") {
+    model.createTables([user, story, comments])
+  }
 }
 
 module.exports = { initAppTables }
