@@ -73,8 +73,8 @@ const story = {
   ]
 }
 
-const comment = {
-  table_name: 'Comment',
+const comments = {
+  table_name: 'Comments',
   primary_key: 'CommentID',
   foreign_key: {
     table_ref: story.table_name,
@@ -95,7 +95,7 @@ const comment = {
 
 
 const initAppTables = (model) => {
-  model.createTables([user, story, comment])
+  model.createTables([user, story, comments])
 }
 
 module.exports = { initAppTables }
