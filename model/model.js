@@ -5,6 +5,8 @@ class DBModel {
   constructor(settings) {
     const { host, user, password, database } = settings
     this.connection = mysql.createConnection({ host, user, password, database })
+    this.createTable = this.createTable.bind(this)
+    this.createTables = this.createTables.bind(this)
   }
 
   tableSerialize({ table_name, primary_key, foreign_key, columns }) {
