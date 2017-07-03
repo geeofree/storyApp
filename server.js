@@ -11,4 +11,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get("/user", (req, res) => {
+  model.selectAll('User', (data, err) => res.send(data))
+})
+
+app.get("/user/:id", (req, res) => {
+  const { id } = req.params
+  model.select('User', `UserID=${id}`, (data, err) => res.send(data))
+})
+
 app.listen(PORT)

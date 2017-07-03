@@ -7,16 +7,17 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UsersService {
-  urlAddress = "http://localhost:8080/story/";
+  endpoint = "http://localhost:8080/user/";
 
   constructor(private http: Http){}
 
-  getAllStory() {
-    return this.http.get(this.urlAddress + "all").map((res: Response) => res.json())
+  getUser(id) {
+    const { endpoint, http } = this
+ 		return http.get(endpoint + id).map((res: Response) => res.json())
   }
 
-  getStory(id){
- 		return this.http.get(this.urlAddress + id).map((res: Response) => res.json());
+  getAllUsers() {
+    const { endpoint, http } = this
+    return http.get(endpoint).map((res: Response) => res.json())
   }
-
 }

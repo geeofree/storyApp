@@ -1,43 +1,23 @@
 const { initAppTables } = require('./tables')
 const { DBModel } = require('./model')
-const prompt = require("prompt")
+const prompt = require("prompt-sync")()
 
 
 function DBConnect(portNumber) {
-  let model;
+  const database = prompt("Name of database to use: ")
+  const user     = prompt("MySQL Username: ")
+  const password = prompt("MySQL Password: ", { echo: '*' })
 
-  const schema = {
-    properties: {
-      db_name: {
-        message: "MySQL Database name",
-        required: true
-      },
-      username: {
-        message: "MySQL username",
-        required: true
-      },
-      password: {
-        message: "MySQL password",
-        hidden: true,
-        replace: '*',
-        required: true
-      }
-    }
-  }
-
-  prompt.start()
-  prompt.get(schema, (err, res) => {
-    model = new DBModel({
-      host: 'localhost',
-      database: res.db_name,
-      user: res.username,
-      password: res.password
-    })
-
-    initAppTables(model)
-    console.log(`Connected. Server is now listening to PORT ${portNumber}`)
+  const model = new DBModel({
+    host: 'localhost',
+    database,
+    password,
+    user
   })
 
+  model.connection.connect()
+  console.log(`Connected. Server Listening to PORT ${portNumber}`)
+  initAppTables(model)
   return model
 }
 

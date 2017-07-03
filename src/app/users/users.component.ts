@@ -9,20 +9,18 @@ import { UsersService } from './users.service'
   providers:[UsersService]
 })
 export class UsersComponent implements OnInit {
-  private response;
+  private response = [];
   private users = [];
 
   constructor(private usersService:UsersService) { }
 
   ngOnInit() {
-    this.usersService.getAllStory().subscribe(res => this.response = res)
+    const { usersService } = this
+    usersService.getAllUsers().subscribe(res => this.response = res)
   }
 
   ngDoCheck(){
     const { response, users } = this
-
-    response.forEach(data => {
-      users.push({...data})
-    })
+    response.forEach(data => users.push({...data}))
   }
 }
